@@ -88,7 +88,32 @@ export declare class ApolloClientManager {
         error: any;
         data?: undefined;
     } | {
-        data: {
+        data: ({
+            id: string | undefined;
+            quantity: number;
+            totalPrice: {
+                gross: {
+                    amount: number;
+                    __typename: "Money";
+                    currency: string;
+                };
+                net: {
+                    amount: number;
+                    __typename: "Money";
+                    currency: string;
+                };
+            } | null;
+            variant: {
+                attributes: import("../../queries/gqlTypes/CheckoutProductVariants").CheckoutProductVariants_productVariants_edges_node_attributes[];
+                id: string;
+                isAvailable: boolean | null;
+                name: string;
+                pricing: import("../../queries/gqlTypes/CheckoutProductVariants").CheckoutProductVariants_productVariants_edges_node_pricing | null;
+                product: import("../../queries/gqlTypes/CheckoutProductVariants").CheckoutProductVariants_productVariants_edges_node_product;
+                quantityAvailable: number;
+                sku: string;
+            };
+        } | {
             id: string | undefined;
             quantity: number;
             totalPrice: {
@@ -104,7 +129,7 @@ export declare class ApolloClientManager {
                 };
             } | null;
             variant: import("../../helpers/LocalStorageHandler").ICheckoutModelLineVariant;
-        }[];
+        })[];
         error?: undefined;
     }>;
     createCheckout: (email: string, lines: Array<{

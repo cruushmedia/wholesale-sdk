@@ -24,6 +24,7 @@ export interface ICheckoutModelLineVariant {
     product?: Checkout_lines_variant_product;
     isAvailable?: boolean | null;
     attributes?: Checkout_lines_variant_attributes[];
+    vendorId?: string;
 }
 export interface ICheckoutModelLine {
     quantity: number;

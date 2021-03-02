@@ -5,7 +5,7 @@ export declare class LocalStorageManager {
     private saleorState;
     constructor(handler: LocalStorageHandler, saleorState: SaleorState);
     getHandler: () => LocalStorageHandler;
-    addItemToCart: (variantId: string, quantity: number) => {
+    addItemToCart: (variantId: string, quantity: number, vendorId?: string | undefined) => {
         lines: import("../../helpers").ICheckoutModelLine[];
         id?: string | undefined;
         token?: any;

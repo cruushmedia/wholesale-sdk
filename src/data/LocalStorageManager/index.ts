@@ -15,7 +15,9 @@ export class LocalStorageManager {
     return this.handler;
   };
 
-  addItemToCart = (variantId: string, quantity: number) => {
+  addItemToCart = (variantId: string, quantity: number, vendorId?: string) => {
+    const vid = vendorId || "wood";
+    console.log("add item to cart");
     const lines = this.saleorState.checkout?.lines || [];
     let variantInCheckout = lines.find(
       variant => variant.variant.id === variantId
@@ -28,12 +30,16 @@ export class LocalStorageManager {
       : quantity;
     if (variantInCheckout) {
       variantInCheckout.quantity = newVariantQuantity;
+      if (vid) {
+        variantInCheckout.variant.vendorId = vid;
+      }
       alteredLines.push(variantInCheckout);
     } else {
       variantInCheckout = {
         quantity,
         variant: {
           id: variantId,
+          vendorId: vid,
         },
       };
       alteredLines.push(variantInCheckout);
